@@ -1,33 +1,81 @@
-import { galleryItems } from './gallery-items.js';
-// Change code below this line
+import * as basicLightbox from 'basiclightbox';
 
-console.log(galleryItems);
+const gallery = document.querySelector('.gallery');
 
-import * as basicLightbox from 'basiclightbox'
+const galleryItems = [
+    {
+        source: './images/container-rainbow.jpg',
+        alt: 'Container Haulage Freight',
+    },
+    {
+        source: './images/rchids-flower.jpg',
+        alt: 'Hokkaido Flower',
+    },
+    {
+        source: './images/aerial-beach-view.jpg',
+        alt: 'Aerial Beach View',
+    },
+    {
+        source: './images/flower-blooms.jpg',
+        alt: 'Flower Blooms',
+    },
+    {
+        source: './images/alpine-mountains.jpg',
+        alt: 'Alpine Mountains',
+    },
+    {
+        source: './images/mountain-lake-sailing.jpg',
+        alt: 'Mountain Lake Sailing',
+    },
+    {
+        source: './images/spring-meadows.jpg',
+        alt: 'Alpine Spring Meadows',
+    },
+    {
+        source: './images/nature-landscape.jpg',
+        alt: 'Nature Landscape',
+    },
+    {
+        source: './images/lighthouse-coast-sea.jpg',
+        alt: 'Lighthouse Coast Sea',
+    },
+];
 
-const instance = basicLightbox.create(`
-    <img src="../images/small-container-haulage-freight.jpg" width="800" height="600">
-`)
+function createGalleryItem(item) {
+    const listItem = document.createElement('li');
+    listItem.className = 'gallery__item';
 
-instance.show()
-debugger;
-{
-	/*
-	 * Prevents the lightbox from closing when clicking its background.
-	 */
-	closable: true,
-	/*
-	 * One or more space separated classes to be added to the basicLightbox element.
-	 */
-	className: 'gallery__item',
-	/*
-	 * Function that gets executed before the lightbox will be shown.
-	 * Returning false will prevent the lightbox from showing.
-	 */
-	onShow: (instance) => {},
-	/*
-	 * Function that gets executed before the lightbox closes.
-	 * Returning false will prevent the lightbox from closing.
-	 */
-	onClose: (instance) => {}
+    const link = document.createElement('a');
+    link.href = item.source;
+    link.className = 'gallery__link';
+
+    const image = document.createElement('img');
+    image.src = `./images/small-${item.source}`;
+    image.setAttribute('data-source', item.source);
+    image.alt = item.alt;
+    image.className = 'gallery__image';
+
+    link.appendChild(image);
+    listItem.appendChild(link);
+
+    return listItem;
 }
+
+function openModal(event) {
+    event.preventDefault();
+    const source = event.target.getAttribute('data-source');
+    const modal = basicLightbox.create(`<img src="${source}" alt="Image description">`);
+    modal.show();
+}
+
+galleryItems.forEach((item) => {
+    const galleryItem = createGalleryItem(item);
+    galleryItem.addEventListener('click', openModal);
+    gallery.appendChild(galleryItem);
+});
+
+window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        basicLightbox.close();
+    }
+});

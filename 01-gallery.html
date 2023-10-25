@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Image gallery</title>
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link 
+      href="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css"
+      rel="stylesheet"
+    >
+  </head>
+  <body>
+    <p><a href="index.html">Go back</a></p>
+
+    <!-- Add gallery items to this list -->
+    <ul class="gallery">
+      <li class="gallery__item">
+        <a class="gallery__link" href="../images/container-rainbow.jpg">
+          <img
+            class="gallery__image"
+            src="../images/small-container-haulage-freight.jpg"
+            data-source="../images/container-rainbow.jpg"
+            alt="Container Haulage Freight"
+          />
+        </a>
+      </li>
+      <li class="gallery__item">
+        <a class="gallery__link" href="../images/rchids-flower.jpg">
+          <img
+            class="gallery__image"
+            src="../images/small-hokkaido-flower.jpg"
+            data-source="../images/rchids-flower.jpg"
+            alt="Hokkaido Flower"
+          />
+        </a>
+      </li>
+      <li class="gallery__item">
+        <a class="gallery__link" href="../images/aerial-beach-view.jpg">
+          <img
+            class="gallery__image"
+            src="../images/small-aerial-beach-view.jpg"
+            data-source="../images/aerial-beach-view.jpg"
+            alt="Aerial Beach View"
+          />
+        </a>
+      </li>
+      <li class="gallery__item">
+        <a class="gallery__link" href="../images/flower-blooms.jpg">
+          <img
+            class="gallery__image"
+            src="../images/small-flower-blooms.jpg"
+            data-source="../images/flower-blooms.jpg"
+            alt="Flower Blooms"
+          />
+        </a>
+      </li>
+      <li class="gallery__item">
+        <a class="gallery__link" href="../images/alpine-mountains.jpg">
+          <img
+            class="gallery__image"
+            src="../images/small-alpine-mountains.jpg"
+            data-source="../images/alpine-mountains.jpg"
+            alt="Alpine Mountains"
+          />
+        </a>
+      </li>
+      <li class="gallery__item">
+        <a class="gallery__link" href="../images/mountain-lake-sailing.jpg">
+          <img
+            class="gallery__image"
+            src="../images/small-img-mountain-lake-sailing.jpg"
+            data-source="../images/mountain-lake-sailing.jpg"
+            alt="Mountain Lake Sailing"
+          />
+        </a>
+      </li>
+      <li class="gallery__item">
+        <a class="gallery__link" href="../images/spring-meadows.jpg">
+          <img
+            class="gallery__image"
+            src="../images/small-img-alpine-spring.jpg"
+            data-source="../images/spring-meadows.jpg"
+            alt="Alpine Spring Meadows"
+          />
+        </a>
+      </li>
+      <li class="gallery__item">
+        <a class="gallery__link" href="large-image.jpg">
+          <img
+            class="gallery__image"
+            src="small-image.jpg"
+            data-source="large-image.jpg"
+            alt="Image description"
+          />
+        </a>
+      </li>
+      <li class="gallery__item">
+        <a class="gallery__link" href="large-image.jpg">
+          <img
+            class="gallery__image"
+            src="small-image.jpg"
+            data-source="large-image.jpg"
+            alt="Image description"
+          />
+        </a>
+      </li>
+    </ul>
+
+    <script
+      src=
+      "https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.js"
+      >
+    </script>
+    <script src="js/01-gallery.js" type="module"></script>
+  </body>
+</html>

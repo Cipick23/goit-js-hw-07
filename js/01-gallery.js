@@ -1,81 +1,44 @@
-import * as basicLightbox from 'basiclightbox';
+import { galleryItems } from './gallery-items.js';
 
-const gallery = document.querySelector('.gallery');
+console.log(galleryItems);
 
-const galleryItems = [
-    {
-        source: './images/container-rainbow.jpg',
-        alt: 'Container Haulage Freight',
-    },
-    {
-        source: './images/rchids-flower.jpg',
-        alt: 'Hokkaido Flower',
-    },
-    {
-        source: './images/aerial-beach-view.jpg',
-        alt: 'Aerial Beach View',
-    },
-    {
-        source: './images/flower-blooms.jpg',
-        alt: 'Flower Blooms',
-    },
-    {
-        source: './images/alpine-mountains.jpg',
-        alt: 'Alpine Mountains',
-    },
-    {
-        source: './images/mountain-lake-sailing.jpg',
-        alt: 'Mountain Lake Sailing',
-    },
-    {
-        source: './images/spring-meadows.jpg',
-        alt: 'Alpine Spring Meadows',
-    },
-    {
-        source: './images/nature-landscape.jpg',
-        alt: 'Nature Landscape',
-    },
-    {
-        source: './images/lighthouse-coast-sea.jpg',
-        alt: 'Lighthouse Coast Sea',
-    },
-];
+const listEl = document.querySelector(".gallery");
+let modalInstance; // Păstrați o referință la instanța modală în scop global
 
-function createGalleryItem(item) {
-    const listItem = document.createElement('li');
-    listItem.className = 'gallery__item';
-
-    const link = document.createElement('a');
-    link.href = item.source;
-    link.className = 'gallery__link';
-
-    const image = document.createElement('img');
-    image.src = `./images/small-${item.source}`;
-    image.setAttribute('data-source', item.source);
-    image.alt = item.alt;
-    image.className = 'gallery__image';
-
-    link.appendChild(image);
-    listItem.appendChild(link);
-
-    return listItem;
-}
-
-function openModal(event) {
-    event.preventDefault();
-    const source = event.target.getAttribute('data-source');
-    const modal = basicLightbox.create(`<img src="${source}" alt="Image description">`);
-    modal.show();
-}
-
-galleryItems.forEach((item) => {
-    const galleryItem = createGalleryItem(item);
-    galleryItem.addEventListener('click', openModal);
-    gallery.appendChild(galleryItem);
+galleryItems.forEach(item => {
+  const listItemEl = document.createElement('li');
+  listItemEl.classList.add('gallery__item')
+  listItemEl.innerHTML = `
+    <a 
+      class='gallery__link' 
+      href='${item.original}'
+    >
+    <img
+      class='gallery__image'
+      src='${item.preview}'
+      data-source='${item.original}'
+      alt='${item.description}'
+    />
+    </a>`;
+  listEl.append(listItemEl);
 });
 
-window.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-        basicLightbox.close();
-    }
+listEl.addEventListener('click', openImageInLightbox);
+
+function openImageInLightbox(event) {
+  const clickedOn = event.target;
+  if (event.target.nodeName !== 'IMG') {
+    return;
+  }
+
+  event.preventDefault();
+
+  modalInstance = basicLightbox.create(`<img width='1400' height='900' src='${clickedOn.dataset.source}'/>`);
+  modalInstance.show();
+}
+
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && modalInstance) {
+    modalInstance.close();
+  }
 });

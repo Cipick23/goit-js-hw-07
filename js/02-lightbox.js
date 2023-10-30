@@ -3,7 +3,7 @@ import { galleryItems } from './gallery-items.js';
 console.log(galleryItems);
 
 const listEl = document.querySelector(".gallery");
-let modalInstance; // Păstrați o referință la instanța modală în scop global
+let modalInstance;
 
 galleryItems.forEach(item => {
   const listItemEl = document.createElement('li');
@@ -34,7 +34,11 @@ function openImageInLightbox(event) {
 
   event.preventDefault();
 
-  modalInstance = basicLightbox.create(`<img width='1400' height='900' src='${clickedOn.dataset.source}'/>`);
+  modalInstance = basicLightbox.create(
+    `<img 
+    width='1400' 
+    height='900' 
+    src='${clickedOn.dataset.source}'/>`);
   modalInstance.show();
 }
 
@@ -42,4 +46,10 @@ window.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && modalInstance) {
     modalInstance.close();
   }
+});
+
+const galleryLinks = document.querySelectorAll('.gallery__link');
+
+const lightbox = new SimpleLightbox(galleryLinks, {
+  
 });

@@ -50,6 +50,4 @@ window.addEventListener('keydown', (e) => {
 
 const galleryLinks = document.querySelectorAll('.gallery__link');
 
-const lightbox = new SimpleLightbox(galleryLinks, {
-  
-});
+const lightbox = new SimpleLightbox(galleryLinks, {});
